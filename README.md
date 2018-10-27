@@ -11,7 +11,7 @@ The purpose of this docker image is to provide an image for Debian and arm32v7 (
 
 ## Quick Start
 
-#### Raspberry Pi
+#### Raspberry Pi (arm32v7)
 
 Start the container by running the following command:
 
