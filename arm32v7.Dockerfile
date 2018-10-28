@@ -52,6 +52,8 @@ COPY supervisord/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Configure InfluxDB
 COPY influxdb/influxdb.conf /etc/influxdb/influxdb.conf
+COPY influxdb/init.sh /etc/init.d/influxdb
+RUN chmod 0755 /etc/init.d/influxdb
 
 # Configure Grafana
 COPY grafana/grafana.ini /etc/grafana/grafana.ini
