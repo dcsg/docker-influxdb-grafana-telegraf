@@ -2,14 +2,9 @@ FROM arm32v7/debian:stretch-slim
 LABEL maintainer="Daniel Gomes <danielcesargomes@gmail.com>"
 
 # Default versions
-ENV INFLUXDB_VERSION 1.6.4
-ENV TELEGRAF_VERSION 1.8.2-1
-ENV GRAFANA_VERSION 5.3.2
-
-# Database Defaults
-ENV INFLUXDB_GRAFANA_DB datasource
-ENV INFLUXDB_GRAFANA_USER datasource
-ENV INFLUXDB_GRAFANA_PW datasource
+ENV INFLUXDB_VERSION=1.6.4
+ENV TELEGRAF_VERSION=1.8.2-1
+ENV GRAFANA_VERSION=5.3.2
 
 ENV GF_DATABASE_TYPE=sqlite3
 
