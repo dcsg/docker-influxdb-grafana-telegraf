@@ -1,9 +1,9 @@
 FROM arm32v7/debian:stretch-slim
-LABEL maintainer="Daniel Gomes <danielcesargomes@gmail.com>"
+LABEL maintainer="Dick Pluim <dockerhub@dickpluim.com>"
 
 # Default versions
 ENV INFLUXDB_VERSION=1.6.4
-ENV TELEGRAF_VERSION=1.8.2-1
+ENV TELEGRAF_VERSION=1.21.2
 ENV GRAFANA_VERSION=5.4.3
 
 ENV GF_DATABASE_TYPE=sqlite3
@@ -32,8 +32,9 @@ RUN rm /var/lib/apt/lists/* -vf \
     && wget https://dl.influxdata.com/influxdb/releases/influxdb_${INFLUXDB_VERSION}_armhf.deb \
     && dpkg -i influxdb_${INFLUXDB_VERSION}_armhf.deb && rm influxdb_${INFLUXDB_VERSION}_armhf.deb \
     # Install Telegraf
-     && wget https://dl.influxdata.com/telegraf/releases/telegraf_${TELEGRAF_VERSION}_armhf.deb \
-     && dpkg -i telegraf_${TELEGRAF_VERSION}_armhf.deb && rm telegraf_${TELEGRAF_VERSION}_armhf.deb \
+     && wget  https://dl.influxdata.com/telegraf/releases/telegraf-${TELEGRAF_VERSION}_linux_armhf.tar.gz \
+     && tar -xf telegraf-${TELEGRAF_VERSION}_linux_armhf.tar.gz -C / && rm telegraf-${TELEGRAF_VERSION}_linux_armhf.tar.gz \
+     && cd /telegraf-${TELEGRAF_VERSION} && cp -R * / && cd / && rm -rf telegraf-${TELEGRAF_VERSION} \
     # Install Grafana
      && wget https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana_${GRAFANA_VERSION}_armhf.deb \
      && dpkg -i grafana_${GRAFANA_VERSION}_armhf.deb && rm grafana_${GRAFANA_VERSION}_armhf.deb \
