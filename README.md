@@ -27,12 +27,17 @@ docker run -d \
   --restart unless-stopped \
   -p 3003:3003 \
   -p 8086:8086 \
-  -v /path/for/influxdb:/var/lib/influxdb \
-  -v /path/for/grafana:/var/lib/grafana \
+  -v /path/for/influxdb_data:/var/lib/influxdb \
+  -v /path/for/influxdb_log:/var/log/influxdb \
+  -v /path/for/grafana_data:/var/lib/grafana \
+  -v /path/for/grafana_log:/var/log/grafana \
+  -v /path/for/telegraf_log:/var/log/telegraf \ 
   -e "GF_SECURITY_ADMIN_USER=<YOU_USERNAME_HERE>" \
   -e "GF_SECURITY_ADMIN_PASSWORD=<YOU_PASSWORD_HERE>" \
   pluim003/influxdb-grafana-telegraf:latest
 ```
+
+Note: I added a bunch of extra volumes as I like to be able to view stuff directly on my Raspberry Pi. Feel free to modify the docker-run-command to your needs.
 
 To stop the container launch:
 

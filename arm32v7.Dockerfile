@@ -22,7 +22,9 @@ RUN rm /var/lib/apt/lists/* -vf \
         git \
         htop \
         libfontconfig \
+        lsof \
         nano \
+        procps \
         vim \
         net-tools \
         wget \
@@ -35,6 +37,7 @@ RUN rm /var/lib/apt/lists/* -vf \
      && wget  https://dl.influxdata.com/telegraf/releases/telegraf-${TELEGRAF_VERSION}_linux_armhf.tar.gz \
      && tar -xf telegraf-${TELEGRAF_VERSION}_linux_armhf.tar.gz -C / && rm telegraf-${TELEGRAF_VERSION}_linux_armhf.tar.gz \
      && cd /telegraf-${TELEGRAF_VERSION} && cp -R * / && cd / && rm -rf telegraf-${TELEGRAF_VERSION} \
+     && groupadd -g 998 telegraf && useradd -ms /bin/bash -u 998 -g 998 telegraf \
     # Install Grafana
      && wget https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana_${GRAFANA_VERSION}_armhf.deb \
      && dpkg -i grafana_${GRAFANA_VERSION}_armhf.deb && rm grafana_${GRAFANA_VERSION}_armhf.deb \
@@ -53,5 +56,9 @@ RUN chmod 0755 /etc/init.d/influxdb
 
 # Configure Grafana
 COPY grafana/grafana.ini /etc/grafana/grafana.ini
+
+# Configure Telegraf
+COPY telegraf/init.sh /etc/init.d/telegraf
+RUN chmod 0755 /etc/init.d/telegraf
 
 CMD [ "/usr/bin/supervisord" ]
