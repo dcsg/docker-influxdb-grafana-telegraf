@@ -2,7 +2,7 @@ FROM arm32v7/debian:stretch-slim
 LABEL maintainer="Dick Pluim <dockerhub@dickpluim.com>"
 
 # Default versions
-ENV INFLUXDB_VERSION=1.6.6
+ENV INFLUXDB_VERSION=1.7.0
 ENV TELEGRAF_VERSION=1.21.2
 ENV GRAFANA_VERSION=5.4.3
 
