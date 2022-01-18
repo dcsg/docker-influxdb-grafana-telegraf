@@ -31,24 +31,7 @@ docker run -d \
   -v /path/for/grafana:/var/lib/grafana \
   -e "GF_SECURITY_ADMIN_USER=<YOU_USERNAME_HERE>" \
   -e "GF_SECURITY_ADMIN_PASSWORD=<YOU_PASSWORD_HERE>" \
-  dcsg/influxdb-grafana-telegraf:arm32v7-1.0.2
-```
-
-#### Debian
-
-Start the container by running the following command:
-
-```sh
-docker run -d \
-  --name influxdb-grafana \
-  --restart unless-stopped \
-  -p 3003:3003 \
-  -p 8086:8086 \
-  -v /path/for/influxdb:/var/lib/influxdb \
-  -v /path/for/grafana:/var/lib/grafana \
-  -e "GF_SECURITY_ADMIN_USER=<YOU_USERNAME_HERE>" \
-  -e "GF_SECURITY_ADMIN_PASSWORD=<YOU_PASSWORD_HERE>" \
-  dcsg/influxdb-grafana-telegraf:debian-1.0.2
+  pluim003/influxdb-grafana-telegraf:latest
 ```
 
 To stop the container launch:
