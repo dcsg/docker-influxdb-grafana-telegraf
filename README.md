@@ -11,7 +11,7 @@ The purpose of this docker image is to provide an image for arm32v7 (Raspberry P
 
 ## Note
 
-This is a fork of the repository created by Daniel Gomez. As the last image was over 3 years old and uses 'ancient' versions of Grafana, InfluxDB and Telegraf I decided to take a shot and see if I could get this to a higher level.
+This is a fork of the repository created by Daniel Gomez. As the last image was over 3 years old and uses 'ancient' versions of Grafana, InfluxDB and Telegraf I decided to take a shot and see if I could get this to more recent versions and still keep it working. And meanwhile learning a bit of creating/maintaining/modifying docker-images.
 As to keep it working I might do this in small steps.
 As I have only a Raspberry Pi I can only test the image on arm32v7.
 
