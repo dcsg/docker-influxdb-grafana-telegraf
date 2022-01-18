@@ -19,6 +19,7 @@ RUN rm /var/lib/apt/lists/* -vf \
         apt-transport-https \
         ca-certificates \
         curl \
+        dialog \
         git \
         htop \
         libfontconfig \
@@ -29,17 +30,20 @@ RUN rm /var/lib/apt/lists/* -vf \
         net-tools \
         wget \
         gnupg \
-        supervisor \
-    # Install InfluxDB
-    && wget https://dl.influxdata.com/influxdb/releases/influxdb_${INFLUXDB_VERSION}_armhf.deb \
-    && dpkg -i influxdb_${INFLUXDB_VERSION}_armhf.deb && rm influxdb_${INFLUXDB_VERSION}_armhf.deb \
-    # Install Telegraf
-     && wget  https://dl.influxdata.com/telegraf/releases/telegraf-${TELEGRAF_VERSION}_linux_armhf.tar.gz \
+        supervisor 
+    
+# Install InfluxDB
+RUN wget https://dl.influxdata.com/influxdb/releases/influxdb_${INFLUXDB_VERSION}_armhf.deb \
+    && dpkg -i influxdb_${INFLUXDB_VERSION}_armhf.deb && rm influxdb_${INFLUXDB_VERSION}_armhf.deb 
+
+# Install Telegraf
+RUN wget  https://dl.influxdata.com/telegraf/releases/telegraf-${TELEGRAF_VERSION}_linux_armhf.tar.gz \
      && tar -xf telegraf-${TELEGRAF_VERSION}_linux_armhf.tar.gz -C / && rm telegraf-${TELEGRAF_VERSION}_linux_armhf.tar.gz \
      && cd /telegraf-${TELEGRAF_VERSION} && cp -R * / && cd / && rm -rf telegraf-${TELEGRAF_VERSION} \
-     && groupadd -g 998 telegraf && useradd -ms /bin/bash -u 998 -g 998 telegraf \
-    # Install Grafana
-     && wget https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana_${GRAFANA_VERSION}_armhf.deb \
+     && groupadd -g 998 telegraf && useradd -ms /bin/bash -u 998 -g 998 telegraf 
+
+# Install Grafana
+RUN wget https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana_${GRAFANA_VERSION}_armhf.deb \
      && dpkg -i grafana_${GRAFANA_VERSION}_armhf.deb && rm grafana_${GRAFANA_VERSION}_armhf.deb \
     # Cleanup
     && apt-get clean \
