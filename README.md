@@ -34,6 +34,7 @@ docker run -d \
   -v /path/for/telegraf_log:/var/log/telegraf \ 
   -e "GF_SECURITY_ADMIN_USER=<YOU_USERNAME_HERE>" \
   -e "GF_SECURITY_ADMIN_PASSWORD=<YOU_PASSWORD_HERE>" \
+  -e "TZ=<YOUR_LOCAL_TIMEZONE_HERE>"
   pluim003/influxdb-grafana-telegraf:latest
 ```
 
