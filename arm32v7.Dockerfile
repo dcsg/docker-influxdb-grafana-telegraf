@@ -2,9 +2,9 @@ FROM arm32v7/debian:stretch-slim
 LABEL maintainer="Dick Pluim <dockerhub@dickpluim.com>"
 
 # Default versions
-ENV INFLUXDB_VERSION=1.7.0
+ENV INFLUXDB_VERSION=1.8.10
 ENV TELEGRAF_VERSION=1.21.2
-ENV GRAFANA_VERSION=5.4.3
+ENV GRAFANA_VERSION=8.3.4
 
 ENV GF_DATABASE_TYPE=sqlite3
 
@@ -43,8 +43,9 @@ RUN wget  https://dl.influxdata.com/telegraf/releases/telegraf-${TELEGRAF_VERSIO
      && groupadd -g 998 telegraf && useradd -ms /bin/bash -u 998 -g 998 telegraf 
 
 # Install Grafana
-RUN wget https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana_${GRAFANA_VERSION}_armhf.deb \
-     && dpkg -i grafana_${GRAFANA_VERSION}_armhf.deb && rm grafana_${GRAFANA_VERSION}_armhf.deb \
+RUN apt-get install -y adduser libfontconfig1 \
+     && wget https://dl.grafana.com/oss/release/grafana-rpi_${GRAFANA_VERSION}_armhf.deb \
+     && dpkg -i grafana-rpi_${GRAFANA_VERSION}_armhf.deb && rm grafana-rpi_${GRAFANA_VERSION}_armhf.deb \
     # Cleanup
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
