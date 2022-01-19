@@ -41,7 +41,6 @@ RUN wget  https://dl.influxdata.com/telegraf/releases/telegraf-${TELEGRAF_VERSIO
      && tar -xf telegraf-${TELEGRAF_VERSION}_linux_armhf.tar.gz -C / && rm telegraf-${TELEGRAF_VERSION}_linux_armhf.tar.gz \
      && cd /telegraf-${TELEGRAF_VERSION} && cp -R * / && cd / && rm -rf telegraf-${TELEGRAF_VERSION} \
      && groupadd -g 998 telegraf && useradd -ms /bin/bash -u 998 -g 998 telegraf 
-
 # Install Grafana
 RUN apt-get install -y adduser libfontconfig1 \
      && wget https://dl.grafana.com/oss/release/grafana-rpi_${GRAFANA_VERSION}_armhf.deb \
