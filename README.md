@@ -52,6 +52,36 @@ To start the container again launch:
 docker start influxdb-grafana
 ```
 
+To backup your Docker-volumes you can use the following script:
+
+```sh
+#!/bin/bash
+
+CONTAINER=influxdb-grafana
+RUNNING_CONTAINER=$(docker container ls -q --filter name=${CONTAINER}*)
+CONTAINER_VOL1=/var/lib/grafana
+CONTAINER_VOL2=/var/lib/influxdb
+CONTAINER_VOL3=
+BACKUP_DIR=<YOUR_BACKUP_DIRECTORY_HERE>/${CONTAINER}
+TODAY=$(date +"%Y%m%d_%H%M")
+
+if [ ! -d "${BACKUP_DIR}" ] ; then
+   mkdir ${BACKUP_DIR}
+fi
+
+docker pause ${RUNNING_CONTAINER}
+
+docker run --rm  --volumes-from ${CONTAINER} -v ${BACKUP_DIR}:/backup busybox tar cvpfz /backup/${CONTAINER}cfg_${TODAY}.tgz ${CONTAINER_VOL1} ${CONTAINER_VOL2} ${CONTAINER_VOL3}
+
+docker unpause ${RUNNING_CONTAINER}
+
+# check and delete backupfiles older dan 7 dagen
+
+find ${BACKUP_DIR}/${CONTAINER}cfg*  -mtime +7 -exec ls -ltr  {} \;
+find ${BACKUP_DIR}/${CONTAINER}cfg*.tgz -mtime +7 -exec ls -ltr {} \;
+find ${BACKUP_DIR}/${CONTAINER}cfg*  -mtime +7 -exec ls -ltr  {} \;
+```
+
 ## Mapped Ports
 
 | Host  | Container | Service  |
