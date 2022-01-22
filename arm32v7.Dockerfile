@@ -22,7 +22,7 @@ RUN rm /var/lib/apt/lists/* -vf \
         dialog \
         git \
         htop \
-        libfontconfig \
+        libfontconfig1 \
         lsof \
         nano \
         procps \
