@@ -1,2 +1,3 @@
 Dockerfile
 grafana/grafana.ini_org
+influxdb/influxdb.conf_org
