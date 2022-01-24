@@ -1,4 +1,4 @@
-FROM arm32v7/debian:stretch-slim
+FROM arm32v7/debian:bullseye-slim
 LABEL maintainer="Dick Pluim <dockerhub@dickpluim.com>"
 
 # Default versions
@@ -14,15 +14,16 @@ WORKDIR /root
 RUN rm /var/lib/apt/lists/* -vf \
     # Base dependencies
     && apt-get -y update \
+    && apt-get install -y adduser libfontconfig1 \
+    && apt-get -y install apt-utils \
     && apt-get -y install \
-        apt-utils \
         apt-transport-https \
         ca-certificates \
         curl \
         dialog \
         git \
         htop \
-        libfontconfig1 \
+        logrotate \
         lsof \
         nano \
         procps \
@@ -42,8 +43,7 @@ RUN wget  https://dl.influxdata.com/telegraf/releases/telegraf-${TELEGRAF_VERSIO
      && cd /telegraf-${TELEGRAF_VERSION} && cp -R * / && cd / && rm -rf telegraf-${TELEGRAF_VERSION} \
      && groupadd -g 998 telegraf && useradd -ms /bin/bash -u 998 -g 998 telegraf 
 # Install Grafana
-RUN apt-get install -y adduser libfontconfig1 \
-     && wget https://dl.grafana.com/oss/release/grafana-rpi_${GRAFANA_VERSION}_armhf.deb \
+RUN wget https://dl.grafana.com/oss/release/grafana-rpi_${GRAFANA_VERSION}_armhf.deb \
      && dpkg -i grafana-rpi_${GRAFANA_VERSION}_armhf.deb && rm grafana-rpi_${GRAFANA_VERSION}_armhf.deb \
     # Cleanup
     && apt-get clean \
@@ -64,5 +64,11 @@ COPY grafana/grafana.ini /etc/grafana/grafana.ini
 # Configure Telegraf
 COPY telegraf/init.sh /etc/init.d/telegraf
 RUN chmod 0755 /etc/init.d/telegraf
+
+# Configure logrotate
+COPY logrotate/influxdb /etc/logrotate.d
+RUN chmod 0644 /etc/logrotate.d/influxdb
+COPY logrotate/telegraf /etc/logrotate.d
+RUN chmod 0644 /etc/logrotate.d/telegraf
 
 CMD [ "/usr/bin/supervisord" ]
