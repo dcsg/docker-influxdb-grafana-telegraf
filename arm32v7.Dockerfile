@@ -1,4 +1,4 @@
-FROM arm32v7/debian:buster-slim
+FROM arm32v7/debian:bullseye-slim
 LABEL maintainer="Dick Pluim <dockerhub@dickpluim.com>"
 
 # Default versions
