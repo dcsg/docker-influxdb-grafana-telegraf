@@ -4,20 +4,20 @@ The purpose of this docker image is to provide an image for arm32v7 (Raspberry P
 
 | Description  | Value             |
 |--------------|-------------------|
-| OS           | arm32v7           |
+| OS           | arm32v7 / arm64v8 |
 | InfluxDB     | 1.8.10            |
-| Grafana      | 8.4.0-beta1       |
+| Grafana      | 8.3.6             |
 | Telegraf     | 1.21.3            |
 
 ## Note
 
-This is a fork of the repository created by Daniel Gomez. As the last image was over 3 years old and uses 'ancient' versions of InfluxDB, Grafana and Telegraf I decided to take a shot and see if I could get this to more recent versions and still keep it working. And meanwhile learning a bit of creating/maintaining/modifying docker-images.
+This is a fork of the repository created by Daniel Gomes. As the last image was over 3 years old and uses 'ancient' versions of InfluxDB, Grafana and Telegraf I decided to take a shot and see if I could get this to more recent versions and still keep it working. And meanwhile learning a bit of creating/maintaining/modifying docker-images.
 As to keep it working I might do this in small steps.
-As I have only a Raspberry Pi I can only test the image on arm32v7.
+As I have only a Raspberry Pi I can only test the image on arm32v7 and arm64v8 after upgrading the Raspberry Pi OS to a 64bits OS.
 
 ## Quick Start
 
-#### Raspberry Pi (arm32v7)
+#### Raspberry Pi (arm32v7/arm64v8)
 
 Start the container by running the following command:
 
@@ -78,7 +78,7 @@ docker unpause ${RUNNING_CONTAINER}
 # check and delete backupfiles older dan 7 dagen
 
 find ${BACKUP_DIR}/${CONTAINER}cfg*  -mtime +7 -exec ls -ltr  {} \;
-find ${BACKUP_DIR}/${CONTAINER}cfg*.tgz -mtime +7 -exec ls -ltr {} \;
+find ${BACKUP_DIR}/${CONTAINER}cfg*.tgz -mtime +7 -exec rm {} \;
 find ${BACKUP_DIR}/${CONTAINER}cfg*  -mtime +7 -exec ls -ltr  {} \;
 ```
 
