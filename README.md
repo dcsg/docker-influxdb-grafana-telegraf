@@ -1,6 +1,6 @@
 # Docker Image with InfluxDB, Grafana and Telegraf
 
-The purpose of this docker image is to provide an image for arm32v7 (Raspberry Pi).
+The purpose of this docker image is to provide an image for arm32v7/arm64v8 (Raspberry Pi).
 
 | Description  | Value             |
 |--------------|-------------------|
