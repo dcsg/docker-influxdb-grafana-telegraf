@@ -6,8 +6,8 @@ The purpose of this docker image is to provide an image for arm32v7 (Raspberry P
 |--------------|-------------------|
 | OS           | arm32v7 / arm64v8 |
 | InfluxDB     | 1.8.10            |
-| Grafana      | 8.3.6             |
-| Telegraf     | 1.21.3            |
+| Grafana      | 8.4.0             |
+| Telegraf     | 1.21.4            |
 
 ## Note
 
