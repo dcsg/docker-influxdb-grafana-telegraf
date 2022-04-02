@@ -6,7 +6,7 @@ The purpose of this docker image is to provide an image for arm32v7/arm64v8 (Ras
 |--------------|-------------------|
 | OS           | arm32v7 / arm64v8 |
 | InfluxDB     | 1.8.10            |
-| Grafana      | 8.4.4             |
+| Grafana      | 8.4.5             |
 | Telegraf     | 1.22.0            |
 
 ## Note
