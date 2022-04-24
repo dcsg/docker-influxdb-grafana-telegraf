@@ -1,19 +1,23 @@
 # Docker Image with InfluxDB, Grafana and Telegraf
 
-The purpose of this docker image is to provide an image for arm32v7/arm64v8 (Raspberry Pi).
+The purpose of this docker image is to provide an image for arm64v8 (Raspberry Pi).
 
 | Description  | Value             |
 |--------------|-------------------|
-| OS           | arm32v7 / arm64v8 |
+| OS           | arm64v8           |
 | InfluxDB     | 1.8.10            |
-| Grafana      | 8.4.7             |
+| Grafana      | 8.5.0             |
 | Telegraf     | 1.22.1            |
 
-## Note
+## Notes
 
 This is a fork of the repository created by Daniel Gomes. As the last image was over 3 years old and uses 'ancient' versions of InfluxDB, Grafana and Telegraf I decided to take a shot and see if I could get this to more recent versions and still keep it working. And meanwhile learning a bit of creating/maintaining/modifying docker-images.
+
 As to keep it working I might do this in small steps.
+
 As I have only a Raspberry Pi I can only test the image on arm32v7 and arm64v8 after upgrading the Raspberry Pi OS to a 64bits OS.
+
+Starting with Grafana version 8.5.0 I removed arm32v7-support as Grafana wouldn't work in my envioronment and I have unfortunately too less time to figure out why it won't work.
 
 ## Quick Start
 
