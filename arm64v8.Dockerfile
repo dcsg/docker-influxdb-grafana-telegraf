@@ -4,7 +4,7 @@ LABEL maintainer="Dick Pluim <dockerhub@dickpluim.com>"
 # Default versions
 ENV INFLUXDB_VERSION=1.8.10
 ENV TELEGRAF_VERSION=1.22.2
-ENV GRAFANA_VERSION=8.5.0
+ENV GRAFANA_VERSION=8.5.1
 
 ENV GF_DATABASE_TYPE=sqlite3
 
