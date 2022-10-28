@@ -3,12 +3,11 @@ name: Build and push latest Docker-Influxdb-Grafana-Telegraf image
 on:
   # cron job to trigger the build on any push to dev
   push:
-  #  branches:
-  #    - 'master'
-  # schedule:
-  # cron job to trigger the build dialy (time in UTC)
-  #  - cron:  '* 4 * * *'
-
+    branches:
+      - 'master'
+    paths:
+      - Dockerfile
+  
 jobs:
   docker:
     runs-on: ubuntu-latest
