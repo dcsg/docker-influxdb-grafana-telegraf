@@ -8,7 +8,7 @@ FROM debian-${TARGETARCH}
 # Default versions
 ENV INFLUXDB_VERSION=1.8.10
 ENV TELEGRAF_VERSION=1.24.3
-ENV GRAFANA_VERSION=9.2.4
+ENV GRAFANA_VERSION=9.2.5
 
 ENV GF_DATABASE_TYPE=sqlite3
 
@@ -72,5 +72,13 @@ COPY grafana/grafana.ini /etc/grafana/grafana.ini
 # Configure Telegraf
 COPY telegraf/init.sh /etc/init.d/telegraf
 RUN chmod 0755 /etc/init.d/telegraf
+
+LABEL org.opencontainers.image.authors="Dick Pluim" \
+      org.opencontainers.image.title="pluim003/docker-influxdb-grafana-telegraf" \
+      org.opencontainers.image.description="Docker image with Influxdb, Grafana and Telegraf" \
+      org.opencontainers.image.url="https://github.com/pluim003/docker-influxdb-grafana-telegraf" \
+      org.opencontainers.image.licenses="MIT" \
+      org.opencontainers.image.source="https://github.com/pluim003/docker-influxdb-grafana-telegraf" \
+      org.opencontainers.image.original_source="https://github.com/dcsg/docker-influxdb-grafana-telegraf"
 
 CMD [ "/usr/bin/supervisord" ]
